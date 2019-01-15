@@ -70,8 +70,9 @@ public class EncapsulateTheData {
 		return memberObj;
 	}
 	public void setmemberObj(Object mObj) {
-		if(mObj.equals()) {
-			
+		if(mObj instanceof String) {
+			mObj = new Object();
 		}
+		this.memberObj = mObj;
 	}
 }

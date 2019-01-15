@@ -3,15 +3,17 @@ package _03_polymorphs;
 import java.awt.Color;
 import java.awt.Graphics;
 
-public class BluePolymorph extends Polymorph{
+public class MessageMorph extends Polymorph MouseListener{
 
-	BluePolymorph(int x, int y) {
+	MessageMorph(int x, int y) {
 		super(x, y);
+		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public void draw(Graphics g) {
-		g.setColor(Color.blue);
+		// TODO Auto-generated method stub
+		g.setColor(Color.MAGENTA);
 		g.fillRect(this.getX(), this.getY(), this.getwidth(), this.getheight());
 	}
 	

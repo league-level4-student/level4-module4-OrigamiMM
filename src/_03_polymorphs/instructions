@@ -4,7 +4,7 @@
 
 3. Create a new sub-class of the Polymorph class called RedMorph. Make this polymorph render red instead of blue. Create an object of RedMorph in the PolymorphWindow class and test it.
 
-4. Create a new sub-class of the Polymorph class called MovingMorph. Add code to the update method to make MovingMorph objects move around the screen. Create a MovingMorph object in your PolymorphWindow class and test it. Don't forget to call the update method.
+--4. Create a new sub-class of the Polymorph class called MovingMorph. Add code to the update method to make MovingMorph objects move around the screen. Create a MovingMorph object in your PolymorphWindow class and test it. Don't forget to call the update method.
 
 5. That was fun! Now, delete all references to Polymorphs inside your PolymorphWindow class. Create an ArrayList of Polymorphs inside your PolymorphWindow class. Initialize the ArrayList and add a bunch of different types of Polymorph objects to the array list.
 
