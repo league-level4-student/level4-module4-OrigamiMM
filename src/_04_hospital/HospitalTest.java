@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import junit.framework.TestCase;
@@ -14,6 +15,67 @@ import junit.framework.TestCase;
  * 3. patients can be assigned to doctors
  * 4. doctors can have no more than 3 patients
  */
+
+class Hospital {
+	ArrayList<Doctor> docs = new ArrayList<Doctor>();
+	ArrayList<Patient> pats = new ArrayList<Patient>();
+	
+	public void addDoctor(Doctor d) {
+		docs.add(d);
+	}
+	public void addPatient(Patient p) {
+		pats.add(p);
+	}
+	
+	public ArrayList<Doctor> getDoctors() {
+		return docs;
+	}
+	public ArrayList<Patient> getPatients(){
+		return pats;
+	}
+} 
+
+class Doctor {
+	ArrayList<Patient> list = new ArrayList<Patient>();
+	
+	public void assignPatient(Patient p) {
+		list.add(p);
+	}
+	
+	public ArrayList<Patient> getPatients(){
+		return list;
+	}
+	
+	public boolean performsSurgery() {
+		return false;
+	}
+	public boolean makesHouseCalls() {
+		return false;
+	}
+}
+
+class GeneralPractitioner extends Doctor {
+	public boolean makesHouseCalls() {
+		return true;
+	}
+}
+
+class Surgeon extends Doctor{
+	public boolean performsSurgery() {
+		return true;
+	}
+}
+
+class Patient {
+	private boolean caredFor = false;
+	public boolean feelsCaredFor() {
+		return caredFor;
+	}
+	public void checkPulse() {
+		caredFor = true;
+	}
+}
+
 
 public class HospitalTest extends TestCase {
 
