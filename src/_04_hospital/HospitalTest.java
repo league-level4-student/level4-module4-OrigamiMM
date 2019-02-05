@@ -16,6 +16,14 @@ import junit.framework.TestCase;
  * 4. doctors can have no more than 3 patients
  */
 
+class DoctorFullException extends Exception {
+	
+	void terminate() {
+		System.exit(0);
+	}
+	
+}
+
 class Hospital {
 	ArrayList<Doctor> docs = new ArrayList<Doctor>();
 	ArrayList<Patient> pats = new ArrayList<Patient>();
@@ -33,13 +41,38 @@ class Hospital {
 	public ArrayList<Patient> getPatients(){
 		return pats;
 	}
+	public void assignPatientsToDoctors() {
+		int s = 0;
+		for (Doctor doctor : docs) {
+			for (int i = s; i < pats.size(); i++) {
+				try {
+					doctor.assignPatient(pats.get(i));
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		s += 3;
+		}
+	}
 } 
 
 class Doctor {
 	ArrayList<Patient> list = new ArrayList<Patient>();
 	
-	public void assignPatient(Patient p) {
-		list.add(p);
+	public void doMedicine() {
+		for (Patient patient : list) {
+			patient.setCare(true);
+		}
+	}
+	
+	public void assignPatient(Patient p) throws Exception{
+		if(list.size() <3) {
+			list.add(p);
+		}else {
+			throw new DoctorFullException();
+		}
+		
 	}
 	
 	public ArrayList<Patient> getPatients(){
@@ -68,6 +101,11 @@ class Surgeon extends Doctor{
 
 class Patient {
 	private boolean caredFor = false;
+	
+	public void setCare(boolean t) {
+		caredFor = t;
+	}
+	
 	public boolean feelsCaredFor() {
 		return caredFor;
 	}
@@ -159,9 +197,13 @@ assertTrue(testDoctor.getPatients().size() == 3);
 
 	public void test8Patients() throws Exception {
 		// TODO: add 3 doctors to hospital
-
+		for(int i = 0; i < 3; i++) {
+			testHospital.addDoctor(new Doctor());
+		}
 		// TODO: add 8 patients to hospital
-
+		for(int i = 0; i < 8; i++) {
+			testHospital.addPatient(new Patient());
+		}
 		// hospital assigns patients to doctors
 		testHospital.assignPatientsToDoctors();
 		// hospital.getDoctors shows doctors have 3, 3, 2 patients
